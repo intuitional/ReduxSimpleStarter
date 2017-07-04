@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './components/app';
+
 import store from './store';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import reducers from './reducers';
+import PostsIndex from './components/posts_index';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <div>
+        <Route path="/" component={PostsIndex} />
+      </div>
+    </BrowserRouter>
   </Provider>
   , document.querySelector('.container'));
