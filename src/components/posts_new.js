@@ -4,6 +4,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createPost } from '../actions';
 
+const FIELDS = {
+    title: { 
+        type: 'input',
+        label: 'Title for post'
+     },
+    categories: { 
+        type: 'input',
+        label: 'Enter some categories'
+     },
+    content: { 
+        type: 'textarea',
+        label: 'Post Contents'
+    }
+};
+
 class PostsNew extends Component {
 
     renderField(field) {
@@ -64,6 +79,12 @@ class PostsNew extends Component {
 function validate(values) {
     const errors = {};
 
+    _.each(FIELDS, (type, field) => {
+        if (!values[field]) {
+            errors[field] = `Enter a ${field}`;
+        }
+    });
+    /*
     // Validate the inputs from 'values'
     if (!values.title) {
         errors.title = "Enter a title!";
@@ -76,7 +97,7 @@ function validate(values) {
     }
     // If errors is empty, the form is fine to submit
     // If errors has *any* properties, redux form assumes form invalid
-
+    */
     return errors;
 }
 
